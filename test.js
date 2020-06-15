@@ -1,23 +1,28 @@
 const describe = (describe1) => {
-    const it = (itShouldBeWhat) => {
-        const expect = (actualResult) => {
-            const toBe = (expectedResult) => {
+    const expect = (actualResult) => {
+        const toBe = (expectedResult) => {
+            try {
+
                 if (actualResult === expectedResult) {
-                    console.log(describe1,itShouldBeWhat,' :✓');
-                } else {
-                    throw 'Fail :✗';
+                    console.log(describe1, ' :✓');
                 }
-            };
-            return {
-                toBe: toBe
+                else {
+                    throw new Error();
+                }
+            }
+            catch (e) {
+                console.log(e,'Test Case Failed:✗');
             }
         };
         return {
-            expect: expect
+            toBe: toBe
         }
     };
     return {
-        it: it
+        expect: expect
     }
+
 };
-module.exports = describe;
+
+module.exports = describe; 
+
